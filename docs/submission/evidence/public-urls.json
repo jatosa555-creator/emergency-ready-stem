@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://github.com/jatosa555-creator/emergency-ready-stem",
+    "status": 200
+  },
+  {
+    "url": "https://github.com/jatosa555-creator/emergency-ready-stem/issues",
+    "status": 200
+  },
+  {
+    "url": "https://github.com/jatosa555-creator/emergency-ready-stem/blob/main/docs/privacy.md",
+    "status": 200
+  },
+  {
+    "url": "https://github.com/jatosa555-creator/emergency-ready-stem/blob/main/docs/terms.md",
+    "status": 200
+  }
+]

@@ -5,3 +5,8 @@ __pycache__/
 *.pyc
 .env*
 !.env.example
+docs/submission/LOCAL-HANDOFF.md
+docs/submission/OWNER-CONFIRMATION-TH.md
+docs/submission/evidence/legal-*.txt
+docs/submission/evidence/*.png
+remote-mcp/artifacts/
