@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmergencyReadyTeacherSessionV11",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "lesson_context",
+    "observations",
+    "teacher_choice",
+    "plans",
+    "evidence_next_time",
+    "privacy_note",
+    "teacher_decision_status",
+    "quality_review"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.1"
+    },
+    "lesson_context": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "age_band": {
+          "type": "string",
+          "minLength": 1
+        },
+        "learning_goal": {
+          "type": "string",
+          "minLength": 1
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "learning_goal"
+      ],
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "statement",
+          "status"
+        ],
+        "properties": {
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "teacher-reported",
+              "model-proposed",
+              "needs-verification",
+              "document-observed"
+            ]
+          },
+          "source_reference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "document-observed"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "source_reference"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "teacher_choice": {
+      "type": "string",
+      "minLength": 1
+    },
+    "plans": {
+      "type": "object",
+      "required": [
+        "normal",
+        "disrupted"
+      ],
+      "properties": {
+        "normal": {
+          "type": "string"
+        },
+        "disrupted": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence_next_time": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "privacy_note": {
+      "type": "string",
+      "minLength": 1
+    },
+    "teacher_decision_status": {
+      "enum": [
+        "proposed",
+        "accepted",
+        "edited",
+        "rejected"
+      ]
+    },
+    "quality_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "checker_kind",
+        "checked",
+        "unresolved"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "draft-checked",
+            "needs-revision",
+            "unverified"
+          ]
+        },
+        "checker_kind": {
+          "enum": [
+            "self-review",
+            "deterministic",
+            "human"
+          ]
+        },
+        "checked": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "unresolved": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EmergencyReadyTeacherSession",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "lesson_context",
+    "observations",
+    "teacher_choice",
+    "plans",
+    "evidence_next_time",
+    "privacy_note"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "lesson_context": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "age_band": {
+          "type": "string"
+        },
+        "learning_goal": {
+          "type": "string"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "learning_goal"
+      ]
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "statement",
+          "status"
+        ],
+        "properties": {
+          "statement": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "teacher-reported",
+              "model-proposed",
+              "needs-verification"
+            ]
+          }
+        }
+      }
+    },
+    "teacher_choice": {
+      "type": "string"
+    },
+    "plans": {
+      "type": "object",
+      "required": [
+        "normal",
+        "disrupted"
+      ],
+      "properties": {
+        "normal": {
+          "type": "string"
+        },
+        "disrupted": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence_next_time": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "privacy_note": {
+      "type": "string"
+    }
+  }
+}
